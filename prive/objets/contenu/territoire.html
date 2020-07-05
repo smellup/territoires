@@ -1,40 +1,29 @@
 <BOUCLE_territoire(TERRITOIRES){id_territoire}>
-[<div class="champ contenu_iso_territoire[ (#ISO_TERRITOIRE*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_iso_territoire_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{iso_territoire} iso_territoire">(#ISO_TERRITOIRE)</span>
-</div>]
+[(#SET{ascendance, [(#ISO_TERRITOIRE|territoire_informer_ascendance{#ISO_PARENT, descendant})]})]
+<div class="champ contenu_ascendance">
+	<label><:territoire:champ_ascendance_label:>&nbsp;:</label>
+	<ul>
+<BOUCLE_ascendance(DATA) {source table, #GET{ascendance}}>
+		[<li[ class="rang(#CLE|plus{1})"]>
+			<span dir="#LANG_DIR">
+				(#VAL{territoire:categorie_}|concat{#VALEUR{categorie}}|_T|ucfirst)&nbsp;:&nbsp;
+				[<a class="nom_usage"[ href="(#VALEUR{id_territoire}|generer_url_entite{territoire})"]>
+					(#VALEUR{nom_usage}|extraire_multi{#LANG, #ARRAY{lang_defaut, aucune}}|ucfirst)
+				</a>]
+				[<span class="iso_territoire">&nbsp;\((#VALEUR{iso_territoire})\)</span>]
+			</span>
+		</li>]
+</BOUCLE_ascendance>
+		<li class="rang1"]>
+			<span dir="#LANG_DIR">
+				<:territoires:info_aucun_parent:>
+			</span>
+		</li>
+<//B_ascendance>
+	</ul>
+</div>
 
-[<div class="champ contenu_iso_titre[ (#ISO_TITRE*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_iso_titre_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{iso_titre} iso_titre">(#ISO_TITRE)</span>
-</div>]
-
-[<div class="champ contenu_type[ (#TYPE*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_type_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{type} type">(#TYPE)</span>
-</div>]
-
-[<div class="champ contenu_categorie[ (#CATEGORIE*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_categorie_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{categorie} categorie">(#CATEGORIE)</span>
-</div>]
-
-[<div class="champ contenu_iso_continent[ (#ISO_CONTINENT*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_iso_continent_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{iso_continent} iso_continent">(#ISO_CONTINENT)</span>
-</div>]
-
-[<div class="champ contenu_iso_pays[ (#ISO_PAYS*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_iso_pays_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{iso_pays} iso_pays">(#ISO_PAYS)</span>
-</div>]
-
-[<div class="champ contenu_iso_parent[ (#ISO_PARENT*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_iso_parent_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{iso_parent} iso_parent">(#ISO_PARENT)</span>
-</div>]
-
-[<div class="champ contenu_texte[ (#DESCRIPTIF*|strlen|?{'',vide})]">
+[<div class="champ contenu_descriptif[ (#DESCRIPTIF*|strlen|?{'',vide})]">
 	<div class="label"><:territoire:champ_descriptif_label:/> : </div>
 	<span dir="#LANG_DIR" class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</span>
 </div>]

@@ -1,11 +1,31 @@
 <BOUCLE_territoire(TERRITOIRES){id_territoire=#ENV{id}}>
 <div class="infos">
 	[(#SET{texte_objet,<:territoire:titre_territoire:/>})]
+	[(#REM) <!-- L'id du territoire -->]
 	<div class="numero">
 		<:titre_cadre_numero_objet{objet=#GET{texte_objet}}:/>
 		<p>#ID_TERRITOIRE</p>
 	</div>
-
-	<div class='nb_elements'>coucou<!--nb_elements--></div>
+	[(#REM) <!-- Le code ISO utilisé pour le territoire :
+			- M49 pour les régions,
+			- 3166-1 alpha2 pour les pays
+			- 3166-2 pour les subdivisions -->]
+	<div class="numero">
+		<:territoire:champ_iso_territoire_label:>&nbsp;:
+		<p>#ISO_TERRITOIRE</p>
+	</div>
+	[(#REM) <!-- Type de territoire et son icone (zone, country, subdivision) -->]
+	[<div class="numero">
+	[(#CHEMIN_IMAGE{[type_(#TYPE)-xx.svg]}
+		|image_reduire{32,32}
+		|inserer_attribut{alt, logo_type}
+		|inserer_attribut{style, 'margin: 0 auto'}
+		|inserer_attribut{class, 'clearfix icone-type'})]
+	(#VAL{territoire:type_}|concat{#TYPE}|_T|ucfirst)
+	</div>]
+	[(#REM) <!-- Catégorie de territoire -->]
+	[<div class="numero">
+		(#VAL{territoire:categorie_}|concat{#CATEGORIE}|_T|ucfirst)
+	</div>]
 </div>
 </BOUCLE_territoire>

@@ -18,7 +18,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_subdivision_territoire'  => 'Subdivisions',
 
 	// I
-	'info_territoire_peuple'     => 'chargé',
+	'info_territoire_peuple' => 'chargé',
+	'info_aucun_parent'      => 'aucune',
 
 	// L
 	'label_peupler_action'          => 'Choisissez une action',

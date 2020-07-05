@@ -30,6 +30,12 @@
 #wysiwyg .champ.contenu_iso_territoire .label,
 #wysiwyg .champ.contenu_type .label,
 #wysiwyg .champ.contenu_categorie .label,
+#wysiwyg .champ.contenu_ascendance .label,
 #wysiwyg .champ.contenu_iso_parent .label,
 #wysiwyg .champ.contenu_iso_continent .label,
 #wysiwyg .champ.contenu_iso_pays .label {display: inline-block;}
+
+.contenu_ascendance ul { padding-top: 0.5em; }
+<BOUCLE_ascendance(DATA) {liste 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}>
+	.contenu_ascendance[ .rang(#VALEUR)] {[ padding-left: (#VALEUR|mult{7})px; ]}
+</BOUCLE_ascendance>
