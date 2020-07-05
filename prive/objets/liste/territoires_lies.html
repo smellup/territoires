@@ -1,0 +1,61 @@
+[(#SET{defaut_tri,#ARRAY{
+	multi nom_usage,1,
+	date,-1,
+	id_territoire,1
+}})
+]
+#SET{selection,#ENV**{selection,#ENV{objet_source}|lister_objets_lies{#ENV{objet},#ENV{id_objet},#ENV{_objet_lien}}}}
+#SET{debut,#ENV{debutterl,#EVAL{_request("debutterl");}}}
+<B_liste_territoires>
+[(#REM) En cas de pagination indirecte @32, il faut refaire le set car la boucle
+a mis a jour la valeur avec la page reelle]
+#SET{debut,#ENV{debutterl,#EVAL{_request("debutterl");}}}
+#SET{afficher_lettres,#TRI|=={'multi nom_usage'}|oui}
+#ANCRE_PAGINATION
+<div class="liste-objets liste-objets-lies territoires">
+<table class="spip liste">
+[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{territoire:info_1_territoire,territoire:info_nb_territoires}})</strong></caption>]
+	<thead>
+		#SET{p,''}
+		<BOUCLE_lettre(TERRITOIRES){tout}{id_territoire IN #GET{selection}}{where?}
+			{tri #ENV{par,multi nom_usage},#GET{defaut_tri}}{id_territoire==#GET{afficher_lettres}|?{'.*','A'}}>[
+		(#NOM_USAGE**|extraire_multi|initiale|unique|oui)
+		[(#SET{p,#GET{p}|concat{
+		#SELF|parametre_url{debutterl,@#ID_TERRITOIRE}|ancre_url{paginationterl}|afficher_initiale{#NOM_USAGE**|extraire_multi|initiale{},#COMPTEUR_BOUCLE,#GET{debut},#ENV{nb,10}}
+		}})]
+		]#SAUTER{#ENV{nb,10}|moins{#COMPTEUR_BOUCLE|=={1}|?{2,1}}}</BOUCLE_lettre>[
+		(#SET{p,
+			#GET{p}|concat{
+				#REM|afficher_initiale{#REM,#TOTAL_BOUCLE,#GET{debut},#ENV{nb,10}}
+			}
+		})]</B_lettre>
+		[<tr><td colspan="4"><p class="pagination">(#GET{p})</p></td></tr>]
+
+		<tr class="first_row">
+			<th class="nom_usage" scope="col">[(#TRI{multi nom_usage,<:territoire:champ_nom_usage_label:/>,ajax})]</th>
+			<th class="action" scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_territoires(TERRITOIRES){id_territoire IN #GET{selection}}
+		{tri #ENV{par,multi nom_usage},#GET{defaut_tri}}{pagination #ENV{nb,10} terl}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#NOM_USAGE**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)][(#ID_TERRITOIRE|=={#ENV{id_lien_ajoute}}|oui)append]">
+			<td class="nom_usage">[(#LOGO_TERRITOIRE|image_reduire{20,20})]<a href="[(#ID_TERRITOIRE|generer_url_entite{territoire})]">#NOM_USAGE</a></td>
+
+			<td class="action">
+				[(#ENV{editable}|oui)
+					<button type="submit" class="button link delete" name="supprimer_lien\[territoire-#ID_TERRITOIRE-#OBJET-#ID_OBJET\]" value="X"><:territoire:retirer_lien_territoire:/> [(#CHEMIN_IMAGE{supprimer-12.png}|balise_img{'X'})]</button>
+				]
+			</td>
+		</tr>
+	</BOUCLE_liste_territoires>
+	</tbody>
+</table>
+[<p class="pagination">(#PAGINATION{prive})</p>]
+[(#GRAND_TOTAL|>{3}|oui)<div class="action"><button type="submit" class="button link" name="supprimer_lien\[territoire-*-#OBJET-#ID_OBJET\]" value="X"><:territoire:retirer_tous_liens_territoires:/> [(#CHEMIN_IMAGE{supprimer-8.png}|balise_img{'X'})]</button></div>]
+</div>
+</B_liste_territoires>
+<div class="liste-objets liste-objets-lies territoires caption-wrap">
+	<strong class="caption">[(#ENV*{titre,<:territoire:info_aucun_territoire:/>})]</strong>
+</div>
+<//B_liste_territoires>

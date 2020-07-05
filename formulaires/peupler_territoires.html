@@ -1,0 +1,44 @@
+<div class="formulaire_spip formulaire_#FORM" id="formulaire_#FORM">
+	<h3></h3>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method="post" action="#ENV{action}">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<p><:territoires:explication_peupler_form:></p>
+			<div class="editer-groupe">
+				[(#SAISIE{radio, action_peuplement,
+					label=<:territoires:label_peupler_action:>,
+					data=#ENV{_actions_peuplement},
+					defaut=#ENV{_action_defaut},
+					disable=#ENV{_actions_disable},
+					conteneur_class=long_label,
+					obligatoire=oui,
+				})]
+
+				[(#SAISIE{checkbox, types,
+					label=<:territoires:label_peupler_territoire:>,
+					explication=<:territoires:explication_zone_pays_territoire:>,
+					data=#ENV{_types},
+					conteneur_class=long_label,
+					obligatoire=oui,
+				})]
+				[(#SAISIE{checkbox, pays,
+					explication=<:territoires:explication_subdivision_territoire:>,
+					data=#ENV{_pays},
+					conteneur_class=long_label,
+					obligatoire=oui,
+					tout_selectionner=oui,
+				})]
+			</div>
+
+			<p class="boutons">
+				<span class="image_loading">&nbsp;</span>
+				<input type="submit" class="submit" value="<:bouton_enregistrer:>" />
+			</p>
+		</div>
+	</form>
+	]
+</div>

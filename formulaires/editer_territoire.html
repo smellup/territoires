@@ -1,0 +1,20 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_territoire,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE
+		<input type="hidden" name="id_territoire" value="#ENV{id_territoire}" />
+		<div class="editer-groupe">
+			[(#SAISIE{textarea, descriptif,
+				label=<:territoire:champ_descriptif_label:>,
+			})]
+		</div>
+
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type="submit" class="submit" value="<:bouton_enregistrer|attribut_html:/>" /></p>
+	</div></form>
+	]
+</div>

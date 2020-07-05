@@ -1,0 +1,16 @@
+<BOUCLE_territoire(TERRITOIRES){id_territoire=#ENV{id}}>
+<div class="infos">
+[(#SET{texte_objet,<:territoire:titre_territoire:/>})]
+<div class="numero"><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:/><p>#ID_TERRITOIRE</p></div>
+
+	<div class='nb_elements'><!--nb_elements--></div>
+
+	[(#AUTORISER{supprimer, territoire, #ID_TERRITOIRE}|oui)
+		[(#BOUTON_ACTION{
+			[(#CHEMIN_IMAGE{territoire-del-24.png}|balise_img{<:territoire:supprimer_territoire:/>}|concat{' ',#VAL{<:territoire:supprimer_territoire:/>}|wrap{<b>}}|trim)],
+			#URL_ACTION_AUTEUR{supprimer_territoire, #ID_TERRITOIRE, #URL_ECRIRE{territoires}},
+			icone s24 horizontale danger territoire-del-24, <:territoire:confirmer_supprimer_territoire:/>})]
+	]
+
+</div>
+</BOUCLE_territoire>

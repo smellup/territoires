@@ -1,0 +1,23 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+	<h3 class="titrem"><:territoires:cfg_titre_parametrages:/></h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE
+		<input type="hidden" name="_meta_casier" value="territoires" />
+
+		<div class="editer-groupe">
+		[(#SAISIE{choisir_objets, association_objets,
+			label=<:territoires:cfg_label_objets_associes:>,
+			exclus=#LISTE{spip_territoires},
+			conteneur_class=long_label,
+		})]
+		</div>
+
+		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer|attribut_html:/>" /></p>
+	</div>
+	</form>
+</div>

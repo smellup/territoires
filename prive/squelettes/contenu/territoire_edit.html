@@ -1,0 +1,36 @@
+[(#ID_TERRITOIRE|oui)
+	[(#AUTORISER{modifier,territoire,#ID_TERRITOIRE}|sinon_interdire_acces)]
+	[(#SET{id_parent,#INFO_{territoire,#ID_TERRITOIRE}})]
+]
+
+
+[(#ID_TERRITOIRE|non)
+	[(#AUTORISER{creer,territoire}|sinon_interdire_acces)]
+]
+
+#SET{redirect,#ENV{redirect}|sinon{#ID_TERRITOIRE|?{#ID_TERRITOIRE|generer_url_entite{territoire},#URL_ECRIRE{territoires}}}}
+
+
+
+<div class="cadre-formulaire-editer">
+<div class="entete-formulaire">
+	[(#ID_TERRITOIRE|oui)
+	[(#GET{redirect}|icone_verticale{<:icone_retour:/>,territoire,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_TERRITOIRE|?{<:territoire:icone_modifier_territoire:/>,<:territoire:icone_creer_territoire:/>})]
+		<h1>(#ENV{titre,#INFO_NOM_USAGE{territoire,#ID_TERRITOIRE}|sinon{<:info_sans_titre:/>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_TERRITOIRE|generer_url_entite{territoire}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_TERRITOIRE{#ENV{id_territoire,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

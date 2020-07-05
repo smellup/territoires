@@ -1,0 +1,21 @@
+[(#REM) <!-- Menu des onglets "Lister territoires", "Peupler territoires" et "Configurer le plugin" --> ]
+<ul class="liste-items sous_navigation">
+	[<li class="item">
+		(#URL_ECRIRE{territoires}
+			|lien_ou_expose{
+				<:territoires:menu_lister:>,
+				[(#ENV{exec}|=={territoires})]})
+	</li>]
+	[<li class="item">
+		(#URL_ECRIRE{peupler_territoires}
+			|lien_ou_expose{
+				<:territoires:menu_peupler:>,
+				[(#ENV{exec}|=={peupler_territoires})]})
+	</li>]
+	[<li class="item">
+		(#URL_ECRIRE{configurer_territoires}
+			|lien_ou_expose{
+				<:territoires:menu_configurer:>,
+				[(#ENV{exec}|=={configurer_territoires})]})
+	</li>]
+</ul>

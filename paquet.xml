@@ -1,0 +1,33 @@
+<paquet
+	prefix="territoires"
+	categorie="divers"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.3.0-dev;3.3.*]"
+	logo="territoires-64.png"
+	documentation=""
+	schema="1" 
+>
+	<!--
+		Paquet généré le 2020-07-02 13:44:33
+	-->
+
+	<nom>Territoires</nom>
+	<!-- La hiérarchie des zones géographiques du continent à la subdivision d&#039;un pays -->
+
+	<auteur lien='https://blog.smellup.net'>Eric Lupinacci</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies" compatibilite="[3.23.2;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="territoires_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/territoires.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/territoires.php" /> 
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/territoires.php" /> 
+	<pipeline nom="affiche_milieu" inclure="territoires_pipelines.php" /> 
+	<pipeline nom="optimiser_base_disparus" inclure="territoires_pipelines.php" /> 
+
+	<menu nom="territoires" titre="territoire:titre_territoires" parent="menu_edition" icone="images/territoire-16.png" action="territoires" /> 
+</paquet>
