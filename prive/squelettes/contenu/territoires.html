@@ -24,7 +24,10 @@
 #FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
 <div class="nettoyeur"></div>
 
-<INCLURE{fond=prive/objets/liste/territoires, env, ajax, sinon=<:territoire:info_aucun_territoire:/>}>
+<INCLURE{fond=prive/objets/liste/territoires,
+	nb=30,
+	sinon=<:territoire:info_aucun_territoire:/>,
+	env, ajax}>
 
 [(#AUTORISER{creer,territoire})
 	[(#URL_ECRIRE{territoire_edit,new=oui}|icone_verticale{<:territoire:icone_creer_territoire:/>,territoire,new,right})]

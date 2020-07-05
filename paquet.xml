@@ -28,6 +28,7 @@
 	<pipeline nom="declarer_tables_auxiliaires" inclure="base/territoires.php" /> 
 	<pipeline nom="affiche_milieu" inclure="territoires_pipelines.php" /> 
 	<pipeline nom="optimiser_base_disparus" inclure="territoires_pipelines.php" /> 
+	<pipeline nom="exclure_id_conditionnel" inclure="territoires_pipelines.php" />
 
 	<menu nom="territoires" titre="territoire:titre_territoires" parent="menu_edition" icone="images/territoire-16.png" action="territoires" /> 
 </paquet>

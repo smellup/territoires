@@ -19,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// I
 	'info_territoire_peuple' => 'chargé',
 	'info_aucun_parent'      => 'aucune',
+	'info_aucun_enfant'      => 'Aucun territoire directement rattaché',
 
 	// L
 	'label_peupler_action'          => 'Choisissez une action',
@@ -63,4 +64,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'territoires_titre'     => 'Territoires',
 	'titre_page_configurer' => 'Configurer Territoires',
 	'titre_page_peupler'    => 'Peupler Territoires',
+	'titre_liste_enfant'    => 'Territoires directement rattachés',
 );

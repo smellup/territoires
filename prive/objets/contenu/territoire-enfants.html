@@ -1,0 +1,10 @@
+[(#REM) <!-- Liste des descendants directs du territoire --> ]
+<BOUCLE_enfants_territoires(TERRITOIRES) {id_territoire}>
+	<INCLURE{fond=prive/objets/liste/territoires,
+		titre=<:territoires:titre_liste_enfant:>,
+		nb=20,
+		iso_parent=#ISO_TERRITOIRE,
+		sinon=<:territoires:info_aucun_enfant:>,
+		ajax,
+		env} />
+</BOUCLE_enfants_territoires>

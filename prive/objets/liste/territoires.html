@@ -15,6 +15,7 @@
 	<thead>
 		<tr class="first_row">
 			<th class="titre" scope="col">[(#TRI{nom_usage,<:territoire:champ_nom_usage_label:>,ajax})]</th>
+			<th class="categorie" scope="col">[(#TRI{categorie,<:territoire:champ_categorie_label:>,ajax})]</th>
 			<th class="iso" scope="col">[(#TRI{iso_territoire,<:territoire:champ_iso_territoire_label:>,ajax})]</th>
 			<th class="iso" scope="col">[(#TRI{iso_parent,<:territoire:champ_iso_parent_label:>,ajax})]</th>
 			<th class="iso" scope="col">[(#TRI{iso_continent,<:territoire:champ_iso_continent_label:>,ajax})]</th>
@@ -30,6 +31,7 @@
 	>
 		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
 			<td class="titre principale">[(#LOGO_TERRITOIRE|image_reduire{20,26})]<a href="[(#ID_TERRITOIRE|generer_url_entite{territoire})]">#NOM_USAGE</a></td>
+			<td class="categorie">[(#VAL{territoire:categorie_}|concat{#CATEGORIE}|_T|ucfirst)]</td>
 			<td class="iso">#ISO_TERRITOIRE</td>
 			<td class="iso">#ISO_PARENT</td>
 			<td class="iso">#ISO_CONTINENT</td>
