@@ -40,13 +40,22 @@
 
 <div class="nettoyeur"></div>
 <div class="liste">
-	<BOUCLE_objetslies(spip_territoires_liens){id_territoire}{0,1}><h3><:territoire:titre_objets_lies_territoire:/></h3></BOUCLE_objetslies>
+	<BOUCLE_objetslies(spip_territoires_liens){id_territoire}{0,1}><h3><:territoire:titre_objets_lies_territoire:></h3></BOUCLE_objetslies>
 
 	<BOUCLE_listeobjets(spip_territoires_liens){id_territoire}{fusion objet}{par objet}>
 		#SET{table,#OBJET|table_objet}
+		#SET{id_table,#OBJET|id_table_objet}
 		[(#SET{titre,[#OBJET:info_(#GET{table})_liees_territoire]})]
 		[(#SET{liste,#VAL{prive/objets/liste/#GET{table}}|trouver_fond|?{#GET{table},objets_lies_territoire}})]
-		<INCLURE{fond=prive/objets/liste/#GET{liste},objet,id_territoire,ajax,env} />
+		#SET{where, ''}
+		<BOUCLE_si_liste(CONDITION) {si #GET{liste}|!={objets_lies_territoire}}>
+			#SET{objets, #ARRAY}
+			<BOUCLE_objets_where(spip_territoires_liens){id_territoire}{objet}>
+				#SET{objets, #GET{objets}|push{#ID_OBJET}}
+			</BOUCLE_objets_where>
+			[(#SET{where, #GET{table}|concat{.#GET{id_table}}|concat{' IN ('}|concat{ #GET{objets}|implode{','}}|concat{)}})]
+		</BOUCLE_si_liste>
+		<INCLURE{fond=prive/objets/liste/#GET{liste},objet,id_territoire,where=#GET{where},ajax,env} />
 	</BOUCLE_listeobjets>
 </div>
 
