@@ -1,27 +1,39 @@
 [(#SET{defaut_tri,#ARRAY{
 	nom_usage,1,
-	date,-1,
+	iso_territoire,1,
+	iso_parent,1,
+	iso_continent,1,
+	iso_pays,1,
 	id_territoire,1,
 	points,-1
-}})]<B_liste_territoires>
+}})
+]<B_liste_territoires>
 #ANCRE_PAGINATION
 <div class="liste-objets territoires">
 <table class="spip liste">
-	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{territoire:info_1_territoire,territoire:info_nb_territoires}})</strong></caption>]
+[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|objet_afficher_nb{territoires}})</strong></caption>]
 	<thead>
 		<tr class="first_row">
-			<th class="picto" scope="col"></th>
-			<th class="nom_usage" scope="col">[(#TRI{nom_usage,<:territoire:champ_nom_usage_label:/>,ajax})]</th>
-			<th class="date" scope="col">[(#TRI{date,<:date:/>,ajax})]</th> 
-			<th class="id" scope="col">[(#TRI{id_territoire,<:info_numero_abbreviation:/>,ajax})]</th>
+			<th class="titre" scope="col">[(#TRI{nom_usage,<:territoire:champ_nom_usage_label:>,ajax})]</th>
+			<th class="iso" scope="col">[(#TRI{iso_territoire,<:territoire:champ_iso_territoire_label:>,ajax})]</th>
+			<th class="iso" scope="col">[(#TRI{iso_parent,<:territoire:champ_iso_parent_label:>,ajax})]</th>
+			<th class="iso" scope="col">[(#TRI{iso_continent,<:territoire:champ_iso_continent_label:>,ajax})]</th>
+			<th class="iso" scope="col">[(#TRI{iso_pays,<:territoire:champ_iso_pays_label:>,ajax})]</th>
+			<th class="id" scope="col">[(#TRI{id_territoire,<:info_numero_abbreviation:>,ajax})]</th>
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_territoires(TERRITOIRES){id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num nom_usage},#GET{defaut_tri}}{par nom_usage}{pagination #ENV{nb,10}}>
+	<BOUCLE_liste_territoires(TERRITOIRES)
+		{id_?}{type?}{categorie?}{iso_parent?}{iso_continent?}{iso_pays?}{edite?}{where?}{statut?}{recherche?}
+		{tri #ENV{par, nom_usage},#GET{defaut_tri}}
+		{pagination #ENV{nb,10}}
+	>
 		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
-			<td class="picto">[(#CHEMIN_IMAGE{territoire-16.png}|balise_img)]</td>
-			<td class="nom_usage principale">[(#LOGO_TERRITOIRE|image_reduire{20,26})]<a href="[(#ID_TERRITOIRE|generer_url_entite{territoire})]" title="<:info_numero_abbreviation|attribut_html:/> #ID_TERRITOIRE">[(#RANG). ]#NOM_USAGE</a></td>
-			<td class="date secondaire">[(#DATE|affdate_jourcourt)]</td> 
+			<td class="titre principale">[(#LOGO_TERRITOIRE|image_reduire{20,26})]<a href="[(#ID_TERRITOIRE|generer_url_entite{territoire})]">#NOM_USAGE</a></td>
+			<td class="iso">#ISO_TERRITOIRE</td>
+			<td class="iso">#ISO_PARENT</td>
+			<td class="iso">#ISO_CONTINENT</td>
+			<td class="iso">#ISO_PAYS</td>
 			<td class="id">[(#AUTORISER{modifier,territoire,#ID_TERRITOIRE}|?{
 				<a href="[(#URL_ECRIRE{territoire_edit,id_territoire=#ID_TERRITOIRE})]">#ID_TERRITOIRE</a>,
 				#ID_TERRITOIRE

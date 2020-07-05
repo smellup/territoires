@@ -6,7 +6,6 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 }
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
-
 	// C
 	'cfg_titre_parametrages'    => 'Paramétrages',
 	'cfg_label_objets_associes' => 'Permettre l\'association de territoire à des objets',
@@ -14,7 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// E
 	'explication_peupler_form' => 'Si les territoires sont déjà chargées ils seront supprimés avant le rechargement. Néanmoins, les éventuelles modifications manuelles faites après le chargement initial et les liens avec les logos et les autres objets seront conservés.
 	Le vidage lui ne conserve ni les territoires ni les liens.',
-	'explication_zone_pays_territoire'  => 'Régions & Pays',
+	'explication_zone_pays_territoire'    => 'Régions & Pays',
 	'explication_subdivision_territoire'  => 'Subdivisions',
 
 	// I
@@ -31,10 +30,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_lister'     => 'Lister les territoires',
 
 	// O
-	'option_depeupler_action' => 'Vider',
-	'option_peupler_action'   => 'Peupler',
-	'option_zone_territoire'  => 'Toutes les régions du monde',
+	'option_depeupler_action'    => 'Vider',
+	'option_peupler_action'      => 'Peupler',
+	'option_zone_territoire'     => 'Toutes les régions du monde',
 	'option_country_territoire'  => 'Tous les pays',
+	'onglet_tous'                => 'Tous',
+	'onglet_zone'                => 'Zones',
+	'onglet_country'             => 'Pays',
+	'onglet_subdivision'         => 'Subdivisions',
 
 	// S
 	'msg_depeupler_zone_erreur'           => 'Une erreur s\'est produite lors du vidage des régions du monde.',

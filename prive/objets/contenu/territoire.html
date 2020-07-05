@@ -1,9 +1,10 @@
 <BOUCLE_territoire(TERRITOIRES){id_territoire}>
+
 [(#SET{ascendance, [(#ISO_TERRITOIRE|territoire_informer_ascendance{#ISO_PARENT, descendant})]})]
 <div class="champ contenu_ascendance">
 	<label><:territoire:champ_ascendance_label:>&nbsp;:</label>
 	<ul>
-<BOUCLE_ascendance(DATA) {source table, #GET{ascendance}}>
+	<BOUCLE_ascendance(DATA) {source table, #GET{ascendance}}>
 		[<li[ class="rang(#CLE|plus{1})"]>
 			<span dir="#LANG_DIR">
 				(#VAL{territoire:categorie_}|concat{#VALEUR{categorie}}|_T|ucfirst)&nbsp;:&nbsp;
@@ -13,13 +14,13 @@
 				[<span class="iso_territoire">&nbsp;\((#VALEUR{iso_territoire})\)</span>]
 			</span>
 		</li>]
-</BOUCLE_ascendance>
+	</BOUCLE_ascendance>
 		<li class="rang1"]>
 			<span dir="#LANG_DIR">
 				<:territoires:info_aucun_parent:>
 			</span>
 		</li>
-<//B_ascendance>
+	<//B_ascendance>
 	</ul>
 </div>
 
