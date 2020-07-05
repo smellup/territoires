@@ -9,16 +9,6 @@
 	<span dir="#LANG_DIR" class="#EDIT{iso_titre} iso_titre">(#ISO_TITRE)</span>
 </div>]
 
-[<div class="champ contenu_nom_usage[ (#NOM_USAGE*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_nom_usage_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{nom_usage} nom_usage">(#NOM_USAGE)</span>
-</div>]
-
-[<div class="champ contenu_descriptif[ (#DESCRIPTIF*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_descriptif_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</span>
-</div>]
-
 [<div class="champ contenu_type[ (#TYPE*|strlen|?{'',vide})]">
 	<div class="label"><:territoire:champ_type_label:/> : </div>
 	<span dir="#LANG_DIR" class="#EDIT{type} type">(#TYPE)</span>
@@ -44,9 +34,9 @@
 	<span dir="#LANG_DIR" class="#EDIT{iso_parent} iso_parent">(#ISO_PARENT)</span>
 </div>]
 
-[<div class="champ contenu_edite[ (#EDITE*|strlen|?{'',vide})]">
-	<div class="label"><:territoire:champ_edite_label:/> : </div>
-	<span dir="#LANG_DIR" class="#EDIT{edite} edite">(#EDITE)</span>
+[<div class="champ contenu_texte[ (#DESCRIPTIF*|strlen|?{'',vide})]">
+	<div class="label"><:territoire:champ_descriptif_label:/> : </div>
+	<span dir="#LANG_DIR" class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</span>
 </div>]
 
 </BOUCLE_territoire>
