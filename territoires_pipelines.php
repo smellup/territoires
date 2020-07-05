@@ -42,7 +42,7 @@ function territoires_affiche_milieu($flux) {
 					'table_source' => 'territoires',
 					'objet'        => $objet,
 					'id_objet'     => $id_objet,
-					'editable'     => autoriser('associerv', $objet, $id_objet) ? 'oui' : 'non'
+					'editable'     => autoriser('associerterritoires', $objet, $id_objet) ? 'oui' : 'non'
 				)
 			);
 		}
