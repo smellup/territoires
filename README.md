@@ -1,2 +1,2 @@
 # territoires
-Gestion des zones géographiques du continent à la subdivisions
+Plugin déplacé sur : https://git.spip.net/spip-contrib-extensions/territoires
